@@ -1,0 +1,54 @@
+@import "~antd/dist/antd.dark.less";
+
+
+// Custom Colors
+@layout-header-background:#141414; 
+@primary-color:#7b0e99;
+@drawer-bg:@layout-header-background;
+@menu-dark-bg:@drawer-bg;
+@layout-header-padding: 0 20px;
+
+
+// ScrollBar
+::-webkit-scrollbar {
+  width: 5px;
+  height: 8px;
+  background: #1d1d1d;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: @primary-color;
+}
+
+
+// Custom Classes
+.logo {
+  height: 52px;
+  margin-top: 7px;
+  float: right;
+  border-radius: 16px;
+}
+
+@media (min-width: 992px) {
+  .menu {
+    display: none;
+  }
+}
+
+.container {
+  height: 270px;
+  margin-top: 10%;
+  margin-bottom: 10%;
+  display: flex;
+  place-content: center;
+  place-items: center;
+  overflow: hidden;
+  background: #070707;
+  border-radius: 30px;
+}
