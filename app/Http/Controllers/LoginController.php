@@ -19,10 +19,11 @@ class LoginController extends Controller
     {
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){ 
             $user = Auth::user();
-            $Token=$user->createToken('Shoppi');
+            $Token=$user->createToken('authToken');
             $success['token'] =  $Token->plainTextToken; 
             $success['name'] =  $user->name;
             $success['status']='User login successfully.';
+            $success['token_type']='Bearer';
             return response()->json($success);
         } 
         else{ 

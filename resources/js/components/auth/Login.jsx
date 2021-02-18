@@ -1,4 +1,5 @@
 import React, { useCallback } from "react";
+import Cookie from "universal-cookie";
 import apiClient from '../../services/apiClient';
 import axios from "axios";
 import {
@@ -14,22 +15,25 @@ import {
  } from '@ant-design/icons';
 
 export const Login = (props) => {
-
+  const cookies = new Cookie();
   const connect = async (email,passwd) => {
     const Body = {
       email: email,
       password: passwd
     }
     await apiClient.get('/sanctum/csrf-cookie');
-    let res = await apiClient.post('api/login', Body);
-    console.log(res.data);
-    return res.data;
+    const Res = await apiClient.post('/api/login', Body)
+    console.log(Res.data.token);
+    return Res.data;
+  
   }
     const [Login] = Form.useForm();
     const handleLogin=useCallback(async ({email,password}) => {
         const result = await connect(email,password);
+        console.log(result);
         if (result.status==="User login successfully.") {
           // Success
+          cookies.set("account",result.token);
           message.success("Logged in sucessfully!");
           props.close();
           Login.resetFields();
@@ -38,16 +42,9 @@ export const Login = (props) => {
           },600);
         }
 
-        if (result.status==="Invalid username/password"|| result.status==="Wrong login information") {
+        if (result.status=="Unauthorised") {
           // Failure
           message.error('Please Check your credentials');
-        }
-        // Warns about lenght
-        if (result.status==="\"email\" length must be at least 3 characters long") {
-          message.warn("The email must be at least 3 characters");
-        }
-        if (result.status==="\"password\" length must be at least 6 characters long") {
-          message.warn("The password must be at least 6 characters");
         }
         // Extreme situations
         if (result.err) {

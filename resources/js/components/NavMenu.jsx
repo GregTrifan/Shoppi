@@ -1,5 +1,6 @@
 import React,{useCallback, useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
+import Account from "../services/account";
 import {
     HomeOutlined,
     ContactsOutlined,
@@ -22,9 +23,10 @@ export const NavMenu = (props) => {
   const [visRegister,setVisRegister] = useState(false);
   const [visLogin,setVisLogin] = useState(false);
   const [visLogout,setVisLogout] = useState(false);
+
   const sessionCheck = async () => {
-    const response = await fetch("api/account",{method:"GET"});
-    return await response.json();
+    const response = await Account();
+    return response
   }
   // Modal Events 
   const CloseForms= () => {
@@ -44,16 +46,16 @@ export const NavMenu = (props) => {
   // Check account existence
   const checkAccount = useCallback(async ()=> {
     const result = await sessionCheck();
-    if (result.isLoggedIn) {
+    if (result!=="Guest") {
       setUser({
-        username:result.username,
+        username:result.name,
         email:result.email
       })
     }
   })
   useEffect(() => {
     checkAccount();
-},[checkAccount]);
+},[]);
 // Components based on account status
 const RenderOpt = () => {
   if (user === undefined ||Object.entries(user).length === 0) {

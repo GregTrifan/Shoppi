@@ -20,8 +20,7 @@ Route::middleware('auth')->get('/user', function (Request $request) {
 });
 Route::post('/login',LoginController::class)->name("login");
 Route::post('/register',[RegisterController::class,'register'])->name("register");
-Route::middleware("auth")->group(function() {
-    Route::get("/account",function(Request $req) {
-        return response()->json(["username"=>$req->getUser()],200);
-    });
+Route::middleware('auth:sanctum')->get('/account',function (Request $request) {
+    return $request->user();
 });
+//Route::get('/account',[RegisterController::class,'account'])->name("account");

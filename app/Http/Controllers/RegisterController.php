@@ -32,10 +32,21 @@ class RegisterController extends Controller
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
         $user = User::create($input);
-        $Token=$user->createToken('Shoppi');
+        $Token=$user->createToken('authToken');
         $success['token'] = $Token->plainTextToken;
         $success['name'] =  $user->name;
         $success['status'] = 'User register successfully.';
         return response()->json($success);
     }
 }
+/*
+    public function account(Request $request) {
+        $user = $request->user();
+        if ($user) {
+            return response()->json(['status' => 'success', 'name' => $request->user()->name, 'email' => $request->user()->email]);
+        }
+        else {
+            return response()->json(["status"=> "fail","name"=>"Guest"]);
+        }
+    }
+    */

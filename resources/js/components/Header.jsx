@@ -1,5 +1,6 @@
 import React,{useState,useEffect,useCallback} from 'react';
 import {Layout,Button,Drawer,Tooltip} from 'antd';
+import Account from "../services/account";
 import {
     MenuOutlined,
   } from '@ant-design/icons';
@@ -7,20 +8,17 @@ import {Link} from "react-router-dom";
 import NavMenu from './NavMenu';
 export const Header = () => {
     const [sider,setSider] = useState(false);
-    const [Greeting,setGreeting]= useState("Hello Guest"); 
-    const connect = async () => {
-      const res = await fetch("api/account");
-      return await res.json();
-    }
+    const [Greeting,setGreeting]= useState("Hello Guest");
+
     const checkAccount = useCallback(async ()=> {
-      const result = await connect();
-      if (result.isLoggedIn) {
-        setGreeting(`Hello ${result.username}`)
+      const result = await Account();
+      if (result!=="Guest") {
+        setGreeting(`Hello ${result.name}`)
       }
     });
     useEffect(async() => {
       checkAccount();
-    },[checkAccount]);
+    },[]);
     return (
         <Layout.Header className="header">
         <Button
