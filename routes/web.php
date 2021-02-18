@@ -17,4 +17,10 @@ Route::fallback(function () {
 });
 
 /* Spa Controller*/
-Route::get('/{any}', [SpaController::class,'index'])->where('any', '.*');
+Route::group([
+    "as"=>"spa."
+],function () {
+
+    Route::get('/', [SpaController::class,'index'])->name("index");
+}
+);
