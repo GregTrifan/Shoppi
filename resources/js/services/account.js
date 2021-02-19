@@ -20,8 +20,9 @@ async function Account() {
         return status.data;
     }
     catch {
-        console.log("WTF??")
-        //cookies.remove("account");
+        console.log("OUT Sir");
+        cookies.remove("account");
+        window.location.reload();
         return "Guest";
     }
     

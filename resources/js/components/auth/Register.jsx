@@ -9,29 +9,29 @@ import {
 import {
   UserAddOutlined,
 } from '@ant-design/icons';
-
+import apiClient from "../../services/apiClient";
 
 export const Register = (props) => {
     const [Register] = Form.useForm();
 
-    const connect = (uname,email,passwd) => {
+    const connect = async (uname,email,passwd) => {
       const Body = {
         email: email,
-        username: uname,
-        password: passwd
+        name: uname,
+        password: passwd,
+        c_password:passwd
       }
-      console.log(JSON.stringify(Body));
-      return fetch('api/register',{method:"POST",body:JSON.stringify(Body)})
-                .then((res) => res.json())
-                .catch(()=>{return {err:"Can't fetch"}});
+      await apiClient.get('/sanctum/csrf-cookie');
+      const Res = await apiClient.post('/api/register', Body)
+      return Res.data;
     }
 
     const handleRegister= useCallback(async ({username,email,password}) => { 
       // Handle registering
         const result = await connect(username,email,password);
         // Successful Register 
-        if (result.status==="User Stored Successfully") {
-          message.success("User Registered Successfully!!");
+        if (result.status==="User register successfully.") {
+          message.success("User Registered Successfully 🥳🥳!!");
           props.close();
           Register.resetFields();
         }

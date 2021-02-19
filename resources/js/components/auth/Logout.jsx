@@ -3,15 +3,13 @@ import {
     UserDeleteOutlined
   } from '@ant-design/icons';
 import {Modal,Button,message} from "antd";
-
+import Out from "../../services/logout";
   export const Logout=({visible,close}) => {
-      const connect = async() => {
-          const res = await fetch("api/logout");
-          return await res.json();
-      }
       const LeaveSession=async () => {
-       await connect();
-      message.success("Logged out sucessfully")
+       const leave = await Out();
+       if (leave.msg=="Logged out") {
+        message.success("Logged out sucessfully");
+       };
        close();
        setTimeout(()=> {
         window.location.reload();

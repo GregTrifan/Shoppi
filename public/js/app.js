@@ -16723,11 +16723,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/UserDeleteOutlined.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/message/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/modal/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/button/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/UserDeleteOutlined.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/message/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/modal/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/button/index.js");
+/* harmony import */ var _services_logout__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/logout */ "./resources/js/services/logout.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -16739,29 +16740,35 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
+
 var Logout = function Logout(_ref) {
   var visible = _ref.visible,
       close = _ref.close;
 
-  var connect = /*#__PURE__*/function () {
+  var LeaveSession = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-      var res;
+      var leave;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return fetch("api/logout");
+              return (0,_services_logout__WEBPACK_IMPORTED_MODULE_2__.default)();
 
             case 2:
-              res = _context.sent;
-              _context.next = 5;
-              return res.json();
+              leave = _context.sent;
 
-            case 5:
-              return _context.abrupt("return", _context.sent);
+              if (leave.msg == "Logged out") {
+                antd__WEBPACK_IMPORTED_MODULE_4__.default.success("Logged out sucessfully");
+              }
 
-            case 6:
+              ;
+              close();
+              setTimeout(function () {
+                window.location.reload();
+              }, 600);
+
+            case 7:
             case "end":
               return _context.stop();
           }
@@ -16769,37 +16776,8 @@ var Logout = function Logout(_ref) {
       }, _callee);
     }));
 
-    return function connect() {
-      return _ref2.apply(this, arguments);
-    };
-  }();
-
-  var LeaveSession = /*#__PURE__*/function () {
-    var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              _context2.next = 2;
-              return connect();
-
-            case 2:
-              antd__WEBPACK_IMPORTED_MODULE_3__.default.success("Logged out sucessfully");
-              close();
-              setTimeout(function () {
-                window.location.reload();
-              }, 600);
-
-            case 5:
-            case "end":
-              return _context2.stop();
-          }
-        }
-      }, _callee2);
-    }));
-
     return function LeaveSession() {
-      return _ref3.apply(this, arguments);
+      return _ref2.apply(this, arguments);
     };
   }();
 
@@ -16807,23 +16785,23 @@ var Logout = function Logout(_ref) {
     close();
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__.default, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_5__.default, {
     closable: false,
     visible: visible,
     destroyOnClose: true,
-    title: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("span", {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_5__.default, {}), " Logout"]
+    title: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_6__.default, {}), " Logout"]
     }),
     onCancel: handleCancel,
-    footer: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_6__.default, {
+    footer: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__.default, {
       onClick: handleCancel,
       children: "Return"
-    }, 1), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_6__.default, {
+    }, 1), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__.default, {
       type: "primary",
       onClick: LeaveSession,
       children: "Yes, sign me out"
     }, 2)],
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("p", {
       children: "Are you sure you want to sign out?"
     })
   });
@@ -16845,13 +16823,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/form/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/message/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/modal/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/button/index.js");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/input/index.js");
-/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/UserAddOutlined.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/form/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/message/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/modal/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/button/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/input/index.js");
+/* harmony import */ var _ant_design_icons__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ant-design/icons */ "./node_modules/@ant-design/icons/es/icons/UserAddOutlined.js");
+/* harmony import */ var _services_apiClient__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/apiClient */ "./resources/js/services/apiClient.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -16875,79 +16854,37 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var Register = function Register(props) {
-  var _Form$useForm = antd__WEBPACK_IMPORTED_MODULE_3__.default.useForm(),
+  var _Form$useForm = antd__WEBPACK_IMPORTED_MODULE_4__.default.useForm(),
       _Form$useForm2 = _slicedToArray(_Form$useForm, 1),
       Register = _Form$useForm2[0];
 
-  var connect = function connect(uname, email, passwd) {
-    var Body = {
-      email: email,
-      username: uname,
-      password: passwd
-    };
-    console.log(JSON.stringify(Body));
-    return fetch('api/register', {
-      method: "POST",
-      body: JSON.stringify(Body)
-    }).then(function (res) {
-      return res.json();
-    })["catch"](function () {
-      return {
-        err: "Can't fetch"
-      };
-    });
-  };
-
-  var handleRegister = (0,react__WEBPACK_IMPORTED_MODULE_1__.useCallback)( /*#__PURE__*/function () {
-    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(_ref) {
-      var username, email, password, result;
+  var connect = /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(uname, email, passwd) {
+      var Body, Res;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              username = _ref.username, email = _ref.email, password = _ref.password;
+              Body = {
+                email: email,
+                name: uname,
+                password: passwd,
+                c_password: passwd
+              };
               _context.next = 3;
-              return connect(username, email, password);
+              return _services_apiClient__WEBPACK_IMPORTED_MODULE_2__.default.get('/sanctum/csrf-cookie');
 
             case 3:
-              result = _context.sent;
+              _context.next = 5;
+              return _services_apiClient__WEBPACK_IMPORTED_MODULE_2__.default.post('/api/register', Body);
 
-              // Successful Register 
-              if (result.status === "User Stored Successfully") {
-                antd__WEBPACK_IMPORTED_MODULE_4__.default.success("User Registered Successfully!!");
-                props.close();
-                Register.resetFields();
-              } // Errors Within the form
+            case 5:
+              Res = _context.sent;
+              return _context.abrupt("return", Res.data);
 
-
-              if (result.status === "\"email\" length must be at least 3 characters long") {
-                antd__WEBPACK_IMPORTED_MODULE_4__.default.warn("Email must be at least 3 characters long");
-              }
-
-              if (result.status === "\"password\" length must be at least 6 characters long") {
-                antd__WEBPACK_IMPORTED_MODULE_4__.default.warn("Password must be at least 6 characters long");
-              }
-
-              if (result.status === "\"username\" length must be at least 3 characters long") {
-                antd__WEBPACK_IMPORTED_MODULE_4__.default.warn("The Username must be at least 3 characters long");
-              } // User already existing
-
-
-              if (result.status.includes("username_1 dup key")) {
-                antd__WEBPACK_IMPORTED_MODULE_4__.default.error("Username already used");
-              }
-
-              if (result.status.includes("email_1 dup key")) {
-                antd__WEBPACK_IMPORTED_MODULE_4__.default.error("Email already used");
-              } // Extreme cases
-
-
-              if (result.err) {
-                antd__WEBPACK_IMPORTED_MODULE_4__.default.error("Some internal problems...");
-              }
-
-            case 11:
+            case 7:
             case "end":
               return _context.stop();
           }
@@ -16955,8 +16892,69 @@ var Register = function Register(props) {
       }, _callee);
     }));
 
-    return function (_x) {
-      return _ref2.apply(this, arguments);
+    return function connect(_x, _x2, _x3) {
+      return _ref.apply(this, arguments);
+    };
+  }();
+
+  var handleRegister = (0,react__WEBPACK_IMPORTED_MODULE_1__.useCallback)( /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(_ref2) {
+      var username, email, password, result;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              username = _ref2.username, email = _ref2.email, password = _ref2.password;
+              _context2.next = 3;
+              return connect(username, email, password);
+
+            case 3:
+              result = _context2.sent;
+
+              // Successful Register 
+              if (result.status === "User register successfully.") {
+                antd__WEBPACK_IMPORTED_MODULE_5__.default.success("User Registered Successfully 🥳🥳!!");
+                props.close();
+                Register.resetFields();
+              } // Errors Within the form
+
+
+              if (result.status === "\"email\" length must be at least 3 characters long") {
+                antd__WEBPACK_IMPORTED_MODULE_5__.default.warn("Email must be at least 3 characters long");
+              }
+
+              if (result.status === "\"password\" length must be at least 6 characters long") {
+                antd__WEBPACK_IMPORTED_MODULE_5__.default.warn("Password must be at least 6 characters long");
+              }
+
+              if (result.status === "\"username\" length must be at least 3 characters long") {
+                antd__WEBPACK_IMPORTED_MODULE_5__.default.warn("The Username must be at least 3 characters long");
+              } // User already existing
+
+
+              if (result.status.includes("username_1 dup key")) {
+                antd__WEBPACK_IMPORTED_MODULE_5__.default.error("Username already used");
+              }
+
+              if (result.status.includes("email_1 dup key")) {
+                antd__WEBPACK_IMPORTED_MODULE_5__.default.error("Email already used");
+              } // Extreme cases
+
+
+              if (result.err) {
+                antd__WEBPACK_IMPORTED_MODULE_5__.default.error("Some internal problems...");
+              }
+
+            case 11:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+
+    return function (_x4) {
+      return _ref3.apply(this, arguments);
     };
   }());
 
@@ -16965,52 +16963,52 @@ var Register = function Register(props) {
     Register.resetFields();
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_5__.default, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_6__.default, {
     closable: false,
     visible: props.visible,
     destroyOnClose: true,
-    title: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("span", {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_6__.default, {}), " Register"]
+    title: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_ant_design_icons__WEBPACK_IMPORTED_MODULE_7__.default, {}), " Register"]
     }),
     onCancel: handleCancel,
-    footer: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__.default, {
+    footer: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__.default, {
       form: "register",
       onClick: handleCancel,
       children: "Cancel"
-    }, "back"), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_7__.default, {
+    }, "back"), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__.default, {
       form: "register",
       htmlType: "submit",
       type: "primary",
       children: "Register"
     }, "register")],
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_3__.default, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_4__.default, {
       name: "register",
       form: Register,
       onFinish: handleRegister,
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_3__.default.Item, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__.default.Item, {
         label: "Email",
         name: "email",
         rules: [{
           required: true,
           message: "Please type your email!"
         }],
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__.default, {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_3__.default.Item, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__.default, {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__.default.Item, {
         label: "Username",
         name: "username",
         rules: [{
           required: true,
           message: "Please type your username!"
         }],
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__.default, {})
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_3__.default.Item, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__.default, {})
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__.default.Item, {
         label: "Password",
         name: "password",
         rules: [{
           required: true,
           message: "Please write your password!"
         }],
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(antd__WEBPACK_IMPORTED_MODULE_8__.default.Password, {})
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__.default.Password, {})
       })]
     })
   });
@@ -17196,11 +17194,12 @@ function _Account() {
           case 14:
             _context.prev = 14;
             _context.t0 = _context["catch"](6);
-            console.log("WTF??"); //cookies.remove("account");
-
+            console.log("OUT Sir");
+            cookies.remove("account");
+            window.location.reload();
             return _context.abrupt("return", "Guest");
 
-          case 18:
+          case 20:
           case "end":
             return _context.stop();
         }
@@ -17236,6 +17235,90 @@ var apiClient = axios__WEBPACK_IMPORTED_MODULE_0___default().create({
   }
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (apiClient);
+
+/***/ }),
+
+/***/ "./resources/js/services/logout.js":
+/*!*****************************************!*\
+  !*** ./resources/js/services/logout.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var universal_cookie__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! universal-cookie */ "./node_modules/universal-cookie/es6/index.js");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! antd */ "./node_modules/antd/es/message/index.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+
+
+function Out() {
+  return _Out.apply(this, arguments);
+}
+
+function _Out() {
+  _Out = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+    var cookies, token, Client, status;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            cookies = new universal_cookie__WEBPACK_IMPORTED_MODULE_2__.default();
+            token = cookies.get("account");
+            Client = axios__WEBPACK_IMPORTED_MODULE_1___default().create({
+              withCredentials: true,
+              headers: {
+                "Accept": "application-json",
+                "X-Requested-With": "XMLHttpRequest",
+                authorization: "Bearer ".concat(token)
+              }
+            });
+            console.log(token);
+            _context.prev = 4;
+            _context.next = 7;
+            return Client.get('/sanctum/csrf-cookie');
+
+          case 7:
+            _context.next = 9;
+            return Client.post("/api/logout");
+
+          case 9:
+            status = _context.sent;
+            cookies.remove("account");
+            console.log(status);
+            return _context.abrupt("return", status.data);
+
+          case 15:
+            _context.prev = 15;
+            _context.t0 = _context["catch"](4);
+            console.log("Nope");
+            cookies.remove("account");
+            antd__WEBPACK_IMPORTED_MODULE_3__.default.warn("Are you surely logged in? 🤔");
+
+          case 20:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[4, 15]]);
+  }));
+  return _Out.apply(this, arguments);
+}
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Out);
 
 /***/ }),
 

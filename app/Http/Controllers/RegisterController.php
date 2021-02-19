@@ -26,7 +26,7 @@ class RegisterController extends Controller
         ]);
             
         if($validator->fails()){
-            return $this->sendError('Validation Error.', $validator->errors());       
+            return response()->json(['err'=>$validator->errors()]);       
         }
    
         $input = $request->all();
@@ -38,15 +38,10 @@ class RegisterController extends Controller
         $success['status'] = 'User register successfully.';
         return response()->json($success);
     }
-}
-/*
-    public function account(Request $request) {
-        $user = $request->user();
-        if ($user) {
-            return response()->json(['status' => 'success', 'name' => $request->user()->name, 'email' => $request->user()->email]);
-        }
-        else {
-            return response()->json(["status"=> "fail","name"=>"Guest"]);
-        }
+    public function logout(Request $request) {
+        $user = request()->user(); //or Auth::user()
+        // Revoke current user token
+        $user->tokens()->where('id', $user->currentAccessToken()->id)->delete();
+        return response()->json(["msg"=>"Logged out"]);
     }
-    */
+}
