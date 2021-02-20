@@ -12,9 +12,7 @@ use App\Http\Controllers\SpaController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::fallback(function () {
-    return response()->view("404",[],404);
-});
+Route::fallback([SpaController::class,'lost'])->name("lost");
 
 /* Spa Controller*/
 Route::group([

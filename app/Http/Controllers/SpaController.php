@@ -10,4 +10,8 @@ class SpaController extends Controller
     {
         return response()->view('spa');
     }
+    public function lost()
+    {
+        return response()->view('spa',[],404);
+    }
 }
