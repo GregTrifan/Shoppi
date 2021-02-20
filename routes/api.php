@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\LoginController;
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,4 @@ Route::middleware('auth:sanctum')->get('/account',function (Request $request) {
     return $request->user();
 });
 Route::middleware('auth:sanctum')->post('/logout',[RegisterController::class,'logout'])->name("logout");
+Route::get('/products',[ProductController::class,'index'])->name("products");

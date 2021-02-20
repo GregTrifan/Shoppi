@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "antd": "^4.12.3",
+        "framer-motion": "^3.6.2",
         "moment": "^2.29.1",
         "react-router-dom": "^5.2.0",
         "universal-cookie": "^4.0.4"
