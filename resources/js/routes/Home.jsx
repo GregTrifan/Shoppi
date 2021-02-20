@@ -41,10 +41,11 @@ export const Home = () => {
         <Skeleton active/><Skeleton active/>
         <Skeleton active/>
         </>)
-    }
-    useEffect(()=> [
+    };
+    useEffect(()=> {
+        setLoad(true);
         getData(page)
-    ],[page]);
+    },[page]);
     const List = loaded?Loader:Rows;
     return (
         <div style={{textAlign:"center",padding:"10px"}}>

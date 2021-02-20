@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
         $faker = \Faker\Factory::create();
         for ($i=0;$i<50;$i++)
             Product::create([
-                'name' => $faker->name,
+                'name' => $faker->word,
                 'description'=> $faker->sentence,
             ]);
     }

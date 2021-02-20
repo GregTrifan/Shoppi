@@ -18974,7 +18974,8 @@ var Home = function Home() {
   };
 
   (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
-    return [getData(page)];
+    setLoad(true);
+    getData(page);
   }, [page]);
   var List = loaded ? Loader : Rows;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {

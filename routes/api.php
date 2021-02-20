@@ -16,9 +16,6 @@ use App\Http\Controllers\LoginController;
 |
 */
 
-Route::middleware('auth')->get('/user', function (Request $request) {
-    return $request->user();
-});
 Route::post('/login',LoginController::class)->name("login");
 Route::post('/register',[RegisterController::class,'register'])->name("register");
 Route::middleware('auth:sanctum')->get('/account',function (Request $request) {
