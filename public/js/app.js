@@ -18019,6 +18019,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Main = function Main(props) {
+  console.log("%cHold Up!", "color: red; font-size: x-large");
+  console.log("%cIf someone told you to copy/paste something here you have an 69/68 chance you're being scammed.", "color: teal");
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(antd__WEBPACK_IMPORTED_MODULE_4__.default, {
       style: {
@@ -18903,13 +18905,12 @@ var Home = function Home() {
             case 2:
               res = _context.sent;
               Data = res.data;
-              console.log(Data.data);
               setProds(Data.data);
               setPage(Data.current_page);
               setMax(Data.last_page);
               setLoad(false);
 
-            case 9:
+            case 8:
             case "end":
               return _context.stop();
           }

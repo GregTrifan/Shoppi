@@ -10,7 +10,6 @@ export const Home = () => {
     const getData = useCallback(async (page) => {
         const res = await apiClient.get(`api/products?page=${page}`);
         let Data = res.data;
-        console.log(Data.data);
         setProds(Data.data);
         setPage(Data.current_page);
         setMax(Data.last_page);
