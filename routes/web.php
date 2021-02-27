@@ -20,5 +20,6 @@ Route::group([
 ],function () {
 
     Route::get('/', [SpaController::class,'index'])->name("index");
+    Route::get('/product', [SpaController::class,'index'])->name("product");
 }
 );
