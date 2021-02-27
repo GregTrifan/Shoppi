@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -23,31 +24,32 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'description'=>'required'
+        ]);
+        if($validator->fails()){
+            return response()->json(['err'=>$validator->errors()]);       
+        }
+        $input = $request->all();
+        $product=Product::create($input);
+        return response()->json(["status" => "Product stored successfully"]);
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
     /**
      * Display the specified resource.
      *
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show($name)
     {
-        //
+        $query=Product::where("name","=",$name)->first();
+        if ($query) {
+            return response()->json($query);
+        }
+        return response()->json("Not found",404);
     }
 
     /**

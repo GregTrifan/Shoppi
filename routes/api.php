@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\LoginController;
+use App\Models\Product;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -22,4 +24,14 @@ Route::middleware('auth:sanctum')->get('/account',function (Request $request) {
     return $request->user();
 });
 Route::middleware('auth:sanctum')->post('/logout',[RegisterController::class,'logout'])->name("logout");
-Route::get('/products',[ProductController::class,'index'])->name("products");
+
+
+Route::group([
+    "prefix"=>"/products",
+    "as"=>"products"
+], function() {
+    Route::get('/',[ProductController::class,'index'])->name("list");
+    Route::get("/show/{name}",[ProductController::class,'show'])
+            ->name("show")->where("name",'^\w+$');
+    Route::post("/add",[ProductController::class,"create"])->name("add");
+});
