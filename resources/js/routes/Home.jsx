@@ -18,7 +18,7 @@ export const Home = () => {
     const RenderData = ()=> {
         return products.map((product,index)=>(
                     <Col key={index} xs={{span:24}} md={{span:12}} lg={{span:6}}>
-                    <Card title={product.name} bordered={false}>
+                    <Card title={product.name} bordered={false} style={{borderRadius:"15px"}}>
                         {product.description}
                     </Card>
                     </Col>
@@ -26,7 +26,7 @@ export const Home = () => {
     const Rows = () => {
         return (
             <>
-            <Row gutter={[8,{xs:8,sm:16,md:24,lg:32}]}>
+            <Row gutter={[8,{xs:8,sm:16,md:24,lg:32}]} gutter={[16, 16]}>
                 <RenderData/>
             </Row>
             
