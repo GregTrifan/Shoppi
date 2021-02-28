@@ -47,6 +47,8 @@ class ProductController extends Controller
     {
         $query=Product::where("name","=",$name)->first();
         if ($query) {
+            $query->view_count+=1;
+            $query->save();
             return response()->json($query);
         }
         return response()->json("Not found",404);
@@ -84,5 +86,9 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         //
+    }
+    public function tops(Request $request) {
+        $query=Product::orderBy('view_count','DESC')->take(5)->get(['name','view_count']);
+        return response()->json($query);
     }
 }

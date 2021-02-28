@@ -34,4 +34,5 @@ Route::group([
     Route::get("/show/{name}",[ProductController::class,'show'])
             ->name("show")->where("name",'^\w+$');
     Route::post("/add",[ProductController::class,"create"])->name("add");
+    Route::get('/top10',[ProductController::class,"tops"])->name("top");
 });

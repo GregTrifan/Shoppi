@@ -39,7 +39,7 @@ export const Header = () => {
       </Drawer>
       <Link to="/">
       <Tooltip placement="bottom" title={Greeting}>
-      <img className="logo" height="52px" witdh="52px" alt="" src='Logo.png'/>
+      <img className="logo" height="52px" witdh="52px" alt="" src='/Logo.png'/>
       </Tooltip>
       </Link>
       </Layout.Header>

@@ -21,5 +21,6 @@ Route::group([
 
     Route::get('/', [SpaController::class,'index'])->name("index");
     Route::get('/product', [SpaController::class,'index'])->name("product");
+    Route::get('/admin',[SpaController::class,'index'])->name("admin");
 }
 );
