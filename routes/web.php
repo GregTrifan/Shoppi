@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SpaController;
+use App\Http\Controllers\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,7 +21,7 @@ Route::group([
 ],function () {
 
     Route::get('/', [SpaController::class,'index'])->name("index");
-    Route::get('/product', [SpaController::class,'index'])->name("product");
+    Route::get('/product/{name}', [ProductController::class,'see'])->name("product")->where("name",'^\w+$');
     Route::get('/admin',[SpaController::class,'index'])->name("admin");
 }
 );

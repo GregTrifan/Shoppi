@@ -2,7 +2,8 @@ import React, {useEffect,useCallback,useState} from "react";
 import Account from "../../services/account";
 import Skeletons from "../Skeletons";
 
-const Restricted = ({children}) => {
+const Restricted = (props) => {
+  const Page = props.children;
     const [loading,setLoaded] = useState(true)
     const checkAccount = useCallback(async ()=> {
         const result = await Account();
@@ -16,11 +17,9 @@ const Restricted = ({children}) => {
       useEffect(async() => {
         checkAccount();
       },[]);
-      console.log(loading);
-      const Res = loading?Skeletons:children;
     return (
         <>
-        {Res}
+        {loading?Skeletons:Page}
         </>
     );
 }

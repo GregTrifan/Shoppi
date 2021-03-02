@@ -7,7 +7,11 @@ const Admin = () => {
 
     return (
     <Restricted>
-        <Card style={{width:"500px",height:"500px",float:"right",margin:"20px"}}>
+        <Card style={{width:"400px",height:"500px",float:"right",margin:"20px"}}>
+        <Title>Top 5 Most viewed Products</Title>
+        <Tops/>
+        </Card>
+        <Card style={{width:"400px",height:"500px",float:"right",margin:"20px", float:"right"}}>
         <Title>Top 5 Most viewed Products</Title>
         <Tops/>
         </Card>

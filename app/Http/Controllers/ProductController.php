@@ -53,7 +53,13 @@ class ProductController extends Controller
         }
         return response()->json("Not found",404);
     }
-
+    public function see($name) {
+        $query=Product::where("name","=",$name)->first();
+        if ($query) {
+            return response()->view("spa");
+        }
+        return response()->redirectTo("/");
+    }
     /**
      * Show the form for editing the specified resource.
      *

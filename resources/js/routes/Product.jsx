@@ -1,74 +1,39 @@
-import React from "react";
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import React, { useCallback, useEffect, useState } from "react";
+import apiClient from "../services/apiClient";
+import Skeletons from "../components/Skeletons";
+import { Card,Layout } from "antd";
+import { Redirect } from "react-router-dom";
 
+const {Content} = Layout;
 const Product = (routerProps) => {
-    const data = [
-        {
-          name: 'Page A',
-          uv: 4000,
-          pv: 2400,
-          amt: 2400,
-        },
-        {
-          name: 'Page B',
-          uv: 3000,
-          pv: 1398,
-          amt: 2210,
-        },
-        {
-          name: 'Page C',
-          uv: 2000,
-          pv: 9800,
-          amt: 2290,
-        },
-        {
-          name: 'Page D',
-          uv: 2780,
-          pv: 3908,
-          amt: 2000,
-        },
-        {
-          name: 'Page E',
-          uv: 1890,
-          pv: 4800,
-          amt: 2181,
-        },
-        {
-          name: 'Page F',
-          uv: 2390,
-          pv: 3800,
-          amt: 2500,
-        },
-        {
-          name: 'Page G',
-          uv: 3490,
-          pv: 4300,
-          amt: 2100,
-        },
-      ];
-      
+  const product = routerProps.match.params.name;
+  const [data,setData] = useState({});
+  const [loaded,setLoad] = useState(false);
+  const getInfo = useCallback(async () => {
+    try {
+      const {data} = await apiClient.get(`/api/products/show/${product}`);
+      setData(data);
+      setLoad(true);
+    }
+    catch {
+      setData("fail");
+    }
+  },[]);
+  const renderData = () => (
+    <Card style={{margin:"20px"}}>
+      Name - {data.name}<br/>
+      Description - {data.description}
+    </Card>
+  )
+  useEffect(()=> {
+    getInfo();
+  },[]);
+  const Res = loaded?renderData:Skeletons;
     return (
-        <>
-            <ResponsiveContainer height="70%" width="70%">
-        <AreaChart
-          width={500}
-          height={400}
-          data={data}
-          margin={{
-            top: 10,
-            right: 30,
-            left: 0,
-            bottom: 0,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip />
-          <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
-        </AreaChart>
-      </ResponsiveContainer>
-      </>
+      <Content>
+        <Res/>
+        {data==="fail"?<Redirect to="/"/>:null}
+      </Content>
     );
 }
 export default Product;
