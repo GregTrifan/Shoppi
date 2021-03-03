@@ -1,6 +1,7 @@
 import {Typography,Skeleton,Row,Card,Col,Pagination} from "antd";
 import apiClient from "../services/apiClient";
 import React, { useCallback, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 const {Title} = Typography;
 export const Home = () => {
     const [products,setProds]=useState([]);
@@ -18,7 +19,9 @@ export const Home = () => {
     const RenderData = ()=> {
         return products.map((product,index)=>(
                     <Col key={index} xs={{span:24}} md={{span:12}} lg={{span:6}}>
-                    <Card title={product.name} bordered={false} style={{borderRadius:"15px"}}>
+                    <Card 
+                    title={<Link to={`/product/${product.name}`}>{product.name} </Link>}
+                    bordered={false} style={{borderRadius:"15px"}}>
                         {product.description}
                     </Card>
                     </Col>
