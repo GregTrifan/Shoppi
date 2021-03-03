@@ -24,10 +24,12 @@
         "style-loader": "^2.0.0"
     },
     "dependencies": {
+        "@reduxjs/toolkit": "^1.5.0",
         "antd": "^4.12.3",
         "chart.js": "^2.9.4",
         "framer-motion": "^3.6.2",
         "moment": "^2.29.1",
+        "react-redux": "^7.2.2",
         "react-router-dom": "^5.2.0",
         "recharts": "^2.0.8",
         "universal-cookie": "^4.0.4"

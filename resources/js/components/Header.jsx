@@ -1,24 +1,18 @@
-import React,{useState,useEffect,useCallback} from 'react';
+import React,{useState} from 'react';
 import {Layout,Button,Drawer,Tooltip} from 'antd';
-import Account from "../services/account";
+import {useSelector} from "react-redux";
 import {
     MenuOutlined,
   } from '@ant-design/icons';
 import {Link} from "react-router-dom"; 
+import {
+  selectUser
+} from "../storage/user";
 import NavMenu from './NavMenu';
 export const Header = () => {
+    const user = useSelector(selectUser);
+    
     const [sider,setSider] = useState(false);
-    const [Greeting,setGreeting]= useState("Hello Guest");
-
-    const checkAccount = useCallback(async ()=> {
-      const result = await Account();
-      if (result!=="Guest") {
-        setGreeting(`Hello ${result.name}`)
-      }
-    });
-    useEffect(async() => {
-      checkAccount();
-    },[]);
     return (
         <Layout.Header className="header">
         <Button
@@ -38,7 +32,7 @@ export const Header = () => {
         <NavMenu dark={true}/>
       </Drawer>
       <Link to="/">
-      <Tooltip placement="bottom" title={Greeting}>
+      <Tooltip placement="bottom" title={`Hello ${user}`}>
       <img className="logo" height="52px" witdh="52px" alt="" src='/Logo.png'/>
       </Tooltip>
       </Link>

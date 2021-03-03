@@ -1,15 +1,16 @@
-import React,{useCallback, useEffect, useState} from 'react';
+import React,{ useState} from 'react';
 import {Link} from 'react-router-dom';
-import Account from "../services/account";
+import {useSelector} from "react-redux";
 import {
     HomeOutlined,
-    ContactsOutlined,
     UserOutlined,
     UserAddOutlined,
     UserDeleteOutlined,
     UserSwitchOutlined,
   } from '@ant-design/icons';
-
+import {
+    selectUser
+  } from "../storage/user";
 import {Menu} from 'antd';
 import {Login} from './auth/Login';
 import {Register} from './auth/Register';
@@ -17,17 +18,14 @@ import {Logout} from './auth/Logout';
 const {SubMenu} = Menu;
 
 export const NavMenu = (props) => {
-  const [user,setUser] = useState({});
+  const user = useSelector(selectUser)
 
   // Modal Hooks
   const [visRegister,setVisRegister] = useState(false);
   const [visLogin,setVisLogin] = useState(false);
   const [visLogout,setVisLogout] = useState(false);
 
-  const sessionCheck = async () => {
-    const response = await Account();
-    return response
-  }
+
   // Modal Events 
   const CloseForms= () => {
     setVisLogin(false);
@@ -43,22 +41,10 @@ export const NavMenu = (props) => {
   const showRegister = () => {
     setVisRegister(true);
   };
-  // Check account existence
-  const checkAccount = useCallback(async ()=> {
-    const result = await sessionCheck();
-    if (result!=="Guest") {
-      setUser({
-        username:result.name,
-        email:result.email
-      })
-    }
-  })
-  useEffect(() => {
-    checkAccount();
-},[]);
+
 // Components based on account status
 const RenderOpt = () => {
-  if (user === undefined ||Object.entries(user).length === 0) {
+  if (user === "Guest") {
     return (
       <>
        <Menu.Item key="2" icon={<UserSwitchOutlined />} onClick={showLogin}>Login</Menu.Item>

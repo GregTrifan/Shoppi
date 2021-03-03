@@ -1,22 +1,19 @@
-import React, {useEffect,useCallback,useState} from "react";
-import Account from "../../services/account";
+import React, {useEffect,useState} from "react";
 import Skeletons from "../Skeletons";
-
+import {selectUser} from "../../storage/user";
+import {useSelector} from "react-redux";
 const Restricted = (props) => {
   const Page = props.children;
     const [loading,setLoaded] = useState(true)
-    const checkAccount = useCallback(async ()=> {
-        const result = await Account();
-        if (result!=="Guest") {
+    const user = useSelector(selectUser);
+    const checkAccount = ()=> {
+        if (user!=="Guest") {
           setLoaded(false);
         }
-        else {
-            window.location.href="/";
-        }
-      });
-      useEffect(async() => {
-        checkAccount();
-      },[]);
+      };
+      useEffect(() => {
+          checkAccount();
+      },[user]);
     return (
         <>
         {loading?Skeletons:Page}

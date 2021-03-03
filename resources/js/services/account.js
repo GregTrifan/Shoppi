@@ -16,7 +16,6 @@ async function Account() {
     console.log(token)
     try {
         const status = await  Client.get("/api/account");
-        console.log(status)
         return status.data;
     }
     catch {
