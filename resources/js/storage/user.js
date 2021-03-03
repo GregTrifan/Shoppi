@@ -18,6 +18,5 @@ export const slice = createSlice({
 });
 
 export const selectUser = state => state.user.name;
-export const selectToken = state => state.user.token;
 export const {store,leave}=slice.actions;
 export default slice.reducer;
