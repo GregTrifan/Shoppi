@@ -11,7 +11,6 @@ export const slice = createSlice({
             console.log(state.name);
         },
         leave: state => {
-            state.token=undefined,
             state.name="Guest"
         }
     }
